@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,46 +12,22 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:weightSum="5">
+        android:weightSum="2">
 
         <TextView
-            android:id="@+id/p1"
+            android:id="@+id/parallelRunBlocking"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="1"
+            android:text="empty"
             android:textAlignment="center"/>
 
-        <TextView
-            android:id="@+id/p2"
+        <Button
+            android:id="@+id/parallelRunBlockingBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="1"
-            android:textAlignment="center"/>
-
-        <TextView
-            android:id="@+id/p3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="1"
-            android:textAlignment="center"/>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2">
-
-            <Button
-                android:id="@+id/parallelBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="parallel tasks" />
-
-
-        </RelativeLayout>
+            android:text="parallel run blocking" />
 
     </LinearLayout>
 
@@ -62,46 +37,22 @@
         android:layout_marginTop="32dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:weightSum="5">
+        android:weightSum="2">
 
         <TextView
-            android:id="@+id/s1"
+            android:id="@+id/parallelLaunch"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="1"
+            android:text="empty"
             android:textAlignment="center"/>
 
-        <TextView
-            android:id="@+id/s2"
+        <Button
+            android:id="@+id/parallelLaunchBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="1"
-            android:textAlignment="center"/>
-
-        <TextView
-            android:id="@+id/s3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="1"
-            android:textAlignment="center"/>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2">
-
-            <Button
-                android:id="@+id/sequentialBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="sequential tasks" />
-
-
-        </RelativeLayout>
+            android:text="parallel launch" />
 
     </LinearLayout>
 
@@ -111,47 +62,49 @@
         android:layout_marginTop="32dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:weightSum="5">
+        android:weightSum="2">
 
         <TextView
-            android:id="@+id/rb1"
+            android:id="@+id/sequential"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="1"
+            android:text="empty"
             android:textAlignment="center"/>
 
-        <TextView
-            android:id="@+id/rb2"
+        <Button
+            android:id="@+id/sequentialBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="1"
-            android:textAlignment="center"/>
-
-        <TextView
-            android:id="@+id/rb3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="1"
-            android:textAlignment="center"/>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2">
-
-            <Button
-                android:id="@+id/runBlockingBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="run blocking" />
-
-
-        </RelativeLayout>
+            android:text="sequential tasks" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/joinChildren"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="empty"
+            android:textAlignment="center"/>
+
+        <Button
+            android:id="@+id/joinChildrenBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Join Children" />
+
+    </LinearLayout>
+
 
 </LinearLayout>

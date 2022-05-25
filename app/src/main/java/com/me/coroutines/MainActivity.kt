@@ -3,7 +3,12 @@ package com.me.coroutines
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.me.coroutines.databinding.ActivityMainBinding
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,6 +18,50 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
+
+        binding.parallelRunBlockingBtn.setOnClickListener {
+            mainViewModel.parallelInRunBlocking()
+        }
+
+        binding.parallelLaunchBtn.setOnClickListener {
+            mainViewModel.parallelInLaunch { firstWord, secondWord ->
+                //Get call back from parallel call
+                binding.parallelLaunch.text = "$firstWord $secondWord"
+            }
+        }
+
+        binding.sequentialBtn.setOnClickListener {
+            mainViewModel.sequential()
+        }
+
+        binding.joinChildrenBtn.setOnClickListener {
+            mainViewModel.joinChildrenWords()
+        }
+
+        this.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+
+                launch {
+                    mainViewModel.parallelRunBlocking.collect{
+                        binding.parallelRunBlocking.text = it
+                    }
+                }
+
+                launch {
+                    mainViewModel.sequential.collect{
+                        binding.sequential.text = it
+                    }
+                }
+
+                launch {
+                    mainViewModel.joinChildren.collect{
+                        binding.joinChildren.text = it
+                    }
+                }
+            }
+        }
+
+
     }
 }
