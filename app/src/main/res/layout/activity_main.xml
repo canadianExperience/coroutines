@@ -106,5 +106,46 @@
 
     </LinearLayout>
 
+    <TextView
+        android:padding="16dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Odd and Even Coroutines"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/odd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="odd"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/even"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="even"
+            android:textAlignment="center"/>
+
+        <Button
+            android:id="@+id/oddEvenBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Odd Even" />
+
+    </LinearLayout>
+
 
 </LinearLayout>

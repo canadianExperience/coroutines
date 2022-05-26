@@ -39,6 +39,10 @@ class MainActivity : AppCompatActivity() {
             mainViewModel.joinChildrenWords()
         }
 
+        binding.oddEvenBtn.setOnClickListener {
+            mainViewModel.startOddEvenCoroutines()
+        }
+
         this.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
 
@@ -57,6 +61,18 @@ class MainActivity : AppCompatActivity() {
                 launch {
                     mainViewModel.joinChildren.collect{
                         binding.joinChildren.text = it
+                    }
+                }
+
+                launch {
+                    mainViewModel.oddNumber.collect{
+                        binding.odd.text = it
+                    }
+                }
+
+                launch {
+                    mainViewModel.evenNumber.collect{
+                        binding.even.text = it
                     }
                 }
             }

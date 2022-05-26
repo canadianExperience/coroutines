@@ -23,6 +23,12 @@ class MainViewModel: ViewModel() {
     private val joinChildrenFlow by lazy { MutableStateFlow("") }
     val joinChildren get() = joinChildrenFlow.asStateFlow()
 
+    private val oddNumberFlow by lazy { MutableStateFlow("") }
+    val oddNumber get() = oddNumberFlow.asStateFlow()
+
+    private val evenNumberFlow by lazy { MutableStateFlow("") }
+    val evenNumber get() = evenNumberFlow.asStateFlow()
+
     init {
        // startCoroutines()
     }
@@ -188,16 +194,51 @@ class MainViewModel: ViewModel() {
         }
     }
 
-    //Suspend functions: sequential, concurrent(parallel) and lazy execution
+    fun startOddEvenCoroutines() = viewModelScope.launch(SupervisorJob() + IO) {
+        //Supervisor scope continue to work even though one of the children failed
+        // but cancellation exceptions have to be handled to avoid errors
 
-    private fun startCounter(max: Int, flow: MutableStateFlow<Int>): Int {
-        var counter = 0
-        while (counter < max){
-            counter += 1
-            flow.value = counter
+        val oddJobName = CoroutineName("odd_coroutine")
+        val evenJobName = CoroutineName("even_coroutine")
+
+        val oddJob = launch(oddJobName) {
+            //Access to counter
+            try {
+                var counter = 0
+                while (counter < 10){
+                    if(counter % 2 > 0) {
+                        val num = oddNumber.value
+                        oddNumberFlow.value = ("$num \n $counter")
+                    }
+                    counter++
+                }
+            } catch (e: CancellationException){
+                Log.d(TAG, "$oddJobName canceled")
+                throw e
+            }
         }
 
-       return counter
+        val evenJob = launch(evenJobName) {
+            //Access to counter
+            try {
+                var counter = 0
+                while (counter < 10){
+                    if(counter % 2 == 0) {
+                        val num = evenNumber.value
+                        evenNumberFlow.value = ("$num \n $counter")
+                    }
+                    counter++
+                }
+            } catch (e: CancellationException){
+                Log.d(TAG, "$evenJobName canceled")
+                throw e
+            }
+        }
+
+        oddJob.join()
+        evenJob.join()
     }
+
+    //Suspend functions: sequential, concurrent(parallel) and lazy execution
 
 }
